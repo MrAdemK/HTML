@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            background-color: #54b1e7;
+        }
+
+        #t01 {
+            width: 50%;
+        }
+    </style>
+</head>
+
+
+<body>
+    <h1>Subnetzmaske</h1>
+    <a href="/Netzwerk/netzwerk.html">zurück zum Netzwerk</a>
+
+    <h3>1. Allgemeines zur Subnetzmaske</h3>
+    <p>Die Netzmaske bzw. Subnetzmaske ist eine Bitmaske. Sie gibt in IPv4-Netzen an wie viele Bits bei einer IP-Adresse
+        das Netzpräfix ausmachen. Zusammen mit der IP-Adresse legt sie die Adresse eines Geräts im Netz fest. Der
+        Netzpräfix-Teil zeigt welche Geräte in einem Netz liegen. Dieser Netzwerkteil muss bei allen Geräten im Netz
+        gleich
+        sein.</p>
+    <p>Eine Subnetzmaske besteht aus 32 Bit und wird immer in Kombination mit der IP-Adresse verwendet. Sie ist also
+        auch
+        genau so lang wie eine IP-Adresse.</p>
+    <p>Beispiel für eine Standard-Subnetzmaske 255.255.255.0:</p>
+    <p>11111111 11111111 11111111 00000000</p>
+
+    <h4>1.1 Aufbau einer Subnetzmaske</h4>
+    <p>Eine Subnetzmaske besteht immer aus einem Netzanteil und einem Hostanteil. Die Anzahl an „1er“-Bits (von links)
+        gibt
+        Netzanteil an. Der Rest ist der Hostanteil. Nachfolgend ist der Netzanteil unserer Beispiel Subnetzmaske rot und
+        der
+        Hostanteil grün gekennzeichnet.</p>
+    <p>11111111 11111111 11111111 00000000</p>
+    <p>In Kombination mit der IP-Adresse kann man anhand einer Subnetzmaske erkennen, ob 2 Computer in einem
+        (Sub-)Netzwerk
+        sind und miteinander direkt kommunizieren können oder diese in verschiedenen Netzwerken liegen und ein Router
+        vermitteln muss.</p>
+
+    <h4>1.2 Schreibweise Subnetzmaske und IP-Adresse</h4>
+    <p>In Fachbüchern und auf Internetseiten findet man häufig die Schreibweise 192.168.0.2/24. Dabei kennzeichnet das
+        „/24“
+        die Subnetzmaske. Genauer gesagt den Anteil der Bits, die auf 1 stehen und damit auch den Netzanteil: „/24“
+        steht
+        für 255.255.255.0.</p>
+
+    <h4>1.3 Oft genutzte Subnetzmasken</h4>
+    <table style="width:50%">
+        <tr>
+            <th>Netzmaske</th>
+            <th>Bitschreibweise</th>
+        </tr>
+        <tr>
+            <td>255.0.0.0 (/8)</td>
+            <td>11111111 00000000 00000000 00000000</td>
+        </tr>
+        <tr>
+            <td>255.255.0.0 (/16)</td>
+            <td>11111111 11111111 00000000 00000000</td>
+        </tr>
+        <tr>
+            <td>255.255.240.0 (/20)</td>
+            <td>11111111 11111111 11110000 00000000</td>
+        </tr>
+        <tr>
+            <td>255.255.255.0 (/24)</td>
+            <td>11111111 11111111 11111111 00000000</td>
+        </tr>
+        <tr>
+            <td>255.255.255.240 (/28)</td>
+            <td>11111111 11111111 11111111 11110000</td>
+        </tr>
+    </table>
+
+    <h3>2. Anzahl Hosts bei einer Subnetzmaske berechnen</h3>
+    <p>Bei einer Standard-Subnetzmaske /24 sind 24 Bits gesetzt. Bleiben also bei maximal 32 Bits noch 8 Bits für den
+        Hostanteil. Um die Anzahl der maximal möglichen Hosts bei einer Subnetzmaske /24 zu berechnen geht man folgend
+        vor:</p>
+    <ul>
+        <li>Wir haben 8 Bit Hostanteil</li>
+        <li>2^8=256</li>
+        <li>256 – 2 = 254 Hosts</li>
+    </ul>
+    <p>Einige werden sich Fragen, warum 2 Hosts abgezogen werden. Dies liegt daran, dass immer die erste (alle Bits im
+        Hostteil sind null) und letzte (alle Bits im Hostteil sind eins) Adresse reserviert sind. Die erste Adresse ist
+        dabei das Netz selbst und die letzte Adresse die Broadcast-Adresse.</p>
+
+    <h3>3. Anhand der Subnetzmaske prüfen, ob 2 PCs in einem Netzwerk sind</h3>
+    <p>Bei Netzwerkproblemen sollte man, nachdem man Kabel- oder Hardwarefehler ausgeschlossen hat, auch überprüfen, ob
+        die IP-Adressen und Subnetzmasken richtig konfiguriert sind.</p>
+    <p>Die Berechnung, ob 2 PCs in einem Netzwerk liegen, ist einfach, wenn man dies einmal verstanden hat. Zur
+        Veranschaulichung nehme wir folgendes Szenario:</p>
+    <a>PC1: 192.168.0.13/24</a><br>
+    <a>PC2: 192.168.0.138/24</a><br>
+    <p>Für die Berechnung schreibt man sich jeweils die IP-Adresse mit der Subnetzmaske untereinander auf. Anschließend
+        schaut man die übereinander liegenden Bits an und trägt unter IP und Subnetzmaske eine neue Zeilen mit neuen
+        Bits. Immer wenn bei IP und Subnetzmaske bei beiden eine „1“ steht, trägt man darunter auch eine „1“ ein. Am
+        besten erkennt man dies an folgender Tabelle:</p>
+
+    <table id="t01">
+        <tr>
+            <th>Gerät</th>
+            <th>Bitschreibweise</th>
+        </tr>
+        <tr>
+            <td>PC1:</td>
+            <td>11000000 10101000 00000000 00001101</td>
+        </tr>
+        <tr>
+            <td>Subnetz PC1:</td>
+            <td>11111111 11111111 11111111 00000000</td>
+        </tr>
+        <tr>
+            <td>Gemeinsame „1“:</td>
+            <td>11000000 10101000 00000000 00000000</td>
+        </tr>
+        <tr>
+            <td>PC2:</td>
+            <td>11000000 10101000 00000000 10001010</td>
+        </tr>
+        <tr>
+            <td>Subnetz PC2:</td>
+            <td>11111111 11111111 11111111 00000000</td>
+        </tr>
+        <tr>
+            <td>Gemeinsame „2“:</td>
+            <td>11000000 10101000 00000000 00000000</td>
+        </tr>
+    </table>
+    <p>Vergleicht man nun die beiden fettgeschrieben Bitfolgen Gemeinsame „1“ und Gemeinsame „2“, erkennt man dass diese
+        gleich sind. Daraus kann man folgern, dass die beiden PCs in einem Netzwerk sind.</p>
+
+    <a href="/Netzwerk/netzwerk.html">zurück zum Netzwerk</a>
+</body>
+
+</html>
