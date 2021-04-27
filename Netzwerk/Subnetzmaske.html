@@ -18,6 +18,36 @@
         #t01 {
             width: 50%;
         }
+
+        .tags {
+            display: inline;
+            position: relative;
+        }
+
+        .tags:hover:after {
+            background: #333;
+            background: rgba(0, 0, 0, .8);
+            border-radius: 5px;
+            bottom: -34px;
+            color: #fff;
+            content: attr(gloss);
+            left: 20%;
+            padding: 5px 15px;
+            position: absolute;
+            z-index: 98;
+            width: 350px;
+        }
+
+        .tags:hover:before {
+            border: solid;
+            border-color: #333 transparent;
+            border-width: 0 6px 6px 6px;
+            bottom: -4px;
+            content: "";
+            left: 50%;
+            position: absolute;
+            z-index: 99;
+        }
     </style>
 </head>
 
@@ -44,7 +74,10 @@
         Netzanteil an. Der Rest ist der Hostanteil. Nachfolgend ist der Netzanteil unserer Beispiel Subnetzmaske rot und
         der
         Hostanteil grün gekennzeichnet.</p>
-    <p>11111111 11111111 11111111 00000000</p>
+    <p>
+        <font color="red">11111111 11111111 11111111</font>
+        <font color="green">00000000</font>
+    </p>
     <p>In Kombination mit der IP-Adresse kann man anhand einer Subnetzmaske erkennen, ob 2 Computer in einem
         (Sub-)Netzwerk
         sind und miteinander direkt kommunizieren können oder diese in verschiedenen Netzwerken liegen und ein Router
@@ -94,15 +127,18 @@
         <li>2^8=256</li>
         <li>256 – 2 = 254 Hosts</li>
     </ul>
-    <p>Einige werden sich Fragen, warum 2 Hosts abgezogen werden. Dies liegt daran, dass immer die erste (alle Bits im
-        Hostteil sind null) und letzte (alle Bits im Hostteil sind eins) Adresse reserviert sind. Die erste Adresse ist
+    <p>Einige werden sich Fragen, warum 2 Hosts abgezogen werden. Dies liegt daran, dass immer die erste <a class="tags"
+            gloss="11111111 11111111 11111111 00000000">(alle Bits im
+            Hostteil sind null)</a> und letzte <a class="tags" gloss="11111111 11111111 11111111 11111111">(alle Bits im
+            Hostteil
+            sind eins)</a> Adresse reserviert sind. Die erste Adresse ist
         dabei das Netz selbst und die letzte Adresse die Broadcast-Adresse.</p>
 
     <h3>3. Anhand der Subnetzmaske prüfen, ob 2 PCs in einem Netzwerk sind</h3>
     <p>Bei Netzwerkproblemen sollte man, nachdem man Kabel- oder Hardwarefehler ausgeschlossen hat, auch überprüfen, ob
         die IP-Adressen und Subnetzmasken richtig konfiguriert sind.</p>
     <p>Die Berechnung, ob 2 PCs in einem Netzwerk liegen, ist einfach, wenn man dies einmal verstanden hat. Zur
-        Veranschaulichung nehme wir folgendes Szenario:</p>
+        Veranschaulichung nehmen wir folgendes Szenario:</p>
     <a>PC1: 192.168.0.13/24</a><br>
     <a>PC2: 192.168.0.138/24</a><br>
     <p>Für die Berechnung schreibt man sich jeweils die IP-Adresse mit der Subnetzmaske untereinander auf. Anschließend
@@ -125,7 +161,7 @@
         </tr>
         <tr>
             <td>Gemeinsame „1“:</td>
-            <td>11000000 10101000 00000000 00000000</td>
+            <td><b>11000000 10101000 00000000 00000000</b></td>
         </tr>
         <tr>
             <td>PC2:</td>
@@ -137,7 +173,7 @@
         </tr>
         <tr>
             <td>Gemeinsame „2“:</td>
-            <td>11000000 10101000 00000000 00000000</td>
+            <td><b>11000000 10101000 00000000 00000000</b></td>
         </tr>
     </table>
     <p>Vergleicht man nun die beiden fettgeschrieben Bitfolgen Gemeinsame „1“ und Gemeinsame „2“, erkennt man dass diese
