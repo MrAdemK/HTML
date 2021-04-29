@@ -2,13 +2,275 @@
 <html>
 
 <head>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        caption {
+            border: 2px solid black;
+            border-collapse: collapse;
+            background-color: red;
+        }
+
+        #t1NF {
+            width: 60%;
+        }
+
+        th {
+            text-align: left;
+            background-color: #54b1e7;
+        }
+
+        td {
+            text-align: right;
+        }
+    </style>
 </head>
 
 
 <body>
     <h1>Normalformen</h1>
-    
-    <a href="/Datenbank/Datenbank.html">zurück zum Datenbank</a>
+    <font size="5" color="red"><b>1.Normalformen</b></font>
+    <h3>Ein Relationstyp (Tabelle) befindet sich in der ersten Normalform (1NF), wenn die Wertebereiche der Attribute
+        des Relationstypen atomar sind.</h3>
+    <p>Es bedeutet, dass jede Information innerhalb einer Tabelle eine eigene Tabellenspalte bekommt und
+        zusammenhängende Informationen, wie zum Beispiel die Postleitzahl (PLZ) und der Ort, nicht in einer
+        Tabellenspalte vorliegen dürfen.</p>
+    <h3>Vorher</h3>
+    <table style="width:55%">
+        <tr>
+            <th>R.-Nr.</th>
+            <th>Datum</th>
+            <th>Name</th>
+            <th>Strasse</th>
+            <th>Ort</th>
+            <th>Artikel</th>
+            <th>Anzahl</th>
+            <th>Preis</th>
+        </tr>
+        <tr>
+            <td>187</td>
+            <td>01.01.2012</td>
+            <td>Max Mustermann</td>
+            <td>Musterstr.1</td>
+            <td>12345 Musterort</td>
+            <td>Bleistift</td>
+            <td>5</td>
+            <td>1,00 €</td>
+        </tr>
+    </table>
+    <h3>Nachher</h3>
+    <table id="t1NF">
+        <tr>
+            <th>R.-Nr.</th>
+            <th>Datum</th>
+            <th>Name</th>
+            <th>Vorname</th>
+            <th>Straße</th>
+            <th>Hnr.</th>
+            <th>PLZ</th>
+            <th>Ort</th>
+            <th>Artikel</th>
+            <th>Anzahl</th>
+            <th>Preis</th>
+            <th>Währung</th>
+        </tr>
+        <tr>
+            <td>187</td>
+            <td>01.01.2012</td>
+            <td>Mustermann</td>
+            <td>Max</td>
+            <td>Musterstr.</td>
+            <td>1</td>
+            <td>12345</td>
+            <td>Musterort</td>
+            <td>Bleistift</td>
+            <td>5</td>
+            <td>1,00</td>
+            <td>Euro</td>
+        </tr>
+    </table><br>
+    <font size="5" color="red"><b>2.Normalformen</b></font>
+    <h3>Ein Relationstyp (Tabelle) befindet sich genau dann in der zweiten Normalform (2NF), wenn er sich in der ersten
+        Normalform (1NF) befindet und jedes Nichtschlüsselattribut von jedem Schlüsselkandidaten voll funktional
+        abhängig ist.</h3>
+    <p>Umgekehrt formuliert heißt dies: Eine Tabelle ist noch nicht in zweiter Normalform, wenn sie einen
+        zusammengesetzten Primärschlüssel hat und ein Nichtschlüssel-Attribut nicht vom ganzen Primärschlüssel, sondern
+        nur von einem Teilschlüssel abhängt. In diesem Fall wird das Nichtschlüssel-Attribut mit dem
+        Primärschlüssel-Teil, von dem es funktional abhängig ist, in eine eigene Tabelle herausgezogen.</p>
+    <h4>Beispiel:</h4>
+    <p>Die Rechnungsinformationen liegen nun in der ersten Normalform (1NF) vor:</p>
+    <table id="t1NF">
+        <tr>
+            <th>R.-Nr.</th>
+            <th>Datum</th>
+            <th>Name</th>
+            <th>Vorname</th>
+            <th>Straße</th>
+            <th>Hnr.</th>
+            <th>PLZ</th>
+            <th>Ort</th>
+            <th>Artikel</th>
+            <th>Anzahl</th>
+            <th>Preis</th>
+            <th>Währung</th>
+        </tr>
+        <tr>
+            <td>187</td>
+            <td>01.01.2012</td>
+            <td>Mustermann</td>
+            <td>Max</td>
+            <td>Musterstr.</td>
+            <td>1</td>
+            <td>12345</td>
+            <td>Musterort</td>
+            <td>Bleistift</td>
+            <td>5</td>
+            <td>1,00</td>
+            <td>Euro</td>
+        </tr>
+    </table>
+    <p>Nach der Anwendung der Zweiten Normalform (2NF) sieht das Ergebnis folgendermaßen aus:</p>
+    <table style="width:15%">
+        <tr>
+            <caption>Rechnung</caption>
+        </tr>
+        <tr>
+            <th>R.-Nr.</th>
+            <th>Datum</th>
+            <th>Knr.</th>
+        </tr>
+        <tr>
+            <td>187</td>
+            <td>01.01.2012</td>
+            <td>007</td>
+        </tr>
+    </table><br>
+    <table style="width:35%">
+        <tr>
+            <caption>Kunde</caption>
+        </tr>
+        <tr>
+            <th>Knr.</th>
+            <th>Name</th>
+            <th>Vorname</th>
+            <th>Straße</th>
+            <th>Hnr.</th>
+            <th>PLZ</th>
+            <th>Ort</th>
+        </tr>
+        <tr>
+            <td>007</td>
+            <td>Mustermann</td>
+            <td>Max</td>
+            <td>Musterstr.</td>
+            <td>1</td>
+            <td>12345</td>
+            <td>Musterort</td>
+        </tr>
+    </table><br>
+    <table>
+        <tr>
+            <caption>Rechnungsposition</caption>
+        </tr>
+        <tr>
+            <th>R.-P.-Nr.</th>
+            <th>R.-Nr.</th>
+            <th>Art.-Nr.</th>
+            <th>Anzahl</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>187</td>
+            <td>69</td>
+            <td>5</td>
+        </tr>
+    </table><br>
+    <table style="width:14%">
+        <tr>
+            <caption>Artikel</caption>
+        </tr>
+        <tr>
+            <th>Art.-Nr.</th>
+            <th>Artikel</th>
+            <th>Preis</th>
+        </tr>
+        <tr>
+            <td>69</td>
+            <td>Bleistift</td>
+            <td>1,00</td>
+        </tr>
+    </table><br>
+    <font size="5" color="red"><b>3.Normalformen</b></font>
+    <h3>Ein Relationstyp befindet sich genau dann in der dritten Normalform (3NF), wenn er sich in der zweiten
+        Normalform (2NF) befindet und kein Nichtschlüsselattribut transitiv von einem Kandidatenschlüssel abhängt.</h3>
+    <p>Die transitiv abhängigen Spalten werden in eine weitere Untertabelle ausgelagert, da sie nicht direkt vom
+        Schlüsselkandidaten abhängen, sondern nur indirekt.</p>
+    <h4>Beispiel:</h4>
+    <p>Die Kundeninformationen liegen nun in der zweiten Normalform (2NF) vor:</p>
+    <table style="width:35%">
+        <tr>
+            <caption>Kunde</caption>
+        </tr>
+        <tr>
+            <th>Knr.</th>
+            <th>Name</th>
+            <th>Vorname</th>
+            <th>Straße</th>
+            <th>Hnr.</th>
+            <th>PLZ</th>
+            <th>Ort</th>
+        </tr>
+        <tr>
+            <td>007</td>
+            <td>Mustermann</td>
+            <td>Max</td>
+            <td>Musterstr.</td>
+            <td>1</td>
+            <td>12345</td>
+            <td>Musterort</td>
+        </tr>
+    </table>
+    <p>Nach der Anwendung der Dritten Normalform (3NF) sieht das Ergebnis folgendermaßen aus:</p>
+    <table style="width:29%">
+        <tr>
+            <caption>Kunde</caption>
+        </tr>
+        <tr>
+            <th>Knr.</th>
+            <th>Name</th>
+            <th>Vorname</th>
+            <th>Straße</th>
+            <th>Hnr.</th>
+            <th>PLZ</th>
+        </tr>
+        <tr>
+            <td>007</td>
+            <td>Mustermann</td>
+            <td>Max</td>
+            <td>Musterstr.</td>
+            <td>1</td>
+            <td>12345</td>
+        </tr>
+    </table><br>
+    <table>
+        <tr>
+            <caption>Postleitzahl</caption>
+        </tr>
+        <tr>
+            <th>PLZ</th>
+            <th>Ort</th>
+        </tr>
+        <tr>
+            <td>12345</td>
+            <td>Musterort</td>
+        </tr>
+    </table>
+    <br><a href="/Datenbank/Datenbank.html">zurück zum Datenbank</a>
 </body>
 
 </html>
