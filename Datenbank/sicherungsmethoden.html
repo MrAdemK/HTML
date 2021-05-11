@@ -7,7 +7,40 @@
 
 <body>
     <h1>Sicherungsmethoden</h1>
-    
+    <a href="/Datenbank/Datenbank.html">zurück zum Datenbank</a><br>
+    <h3>Vollsicherung</h3>
+    <p>Eins zu Eins Kopie von allen zu Sicherden Daten</p>
+    <p>Nachteil: Wenn jeden Tag gesichert wird ist der Verbrauchter Speicher sehr hoch</p>
+    <h3>Differenziell</h3>
+    <ul>
+        <li>1.Tag eine Vollsicherung von 100 GB!</li>
+        <li>Dann für jeden Tag die Änderung zur Vollsicherung speichern</li>
+        <li>Wenn am 2.Tag 10 GB gespeichert wird und am 3.Tag auch wird es zum Differenziellen dazu berechnet. Das heißt
+            am 3.Tag haben somit 20 GB Daten gepeichert und Verbrauch der Speicherplatz beträgt 130 GB</li>
+    </ul>
+    <h3>Inkrementell</h3>
+    <ul>
+        <li>Erster Tag eine Vollsicherung von 100 GB</li>
+        <li>Am 2.Tag gleich wie Differenziell. Ab dem 3.Tag wird immer nur die Änderungen zur letzten Inkrementellen
+            Sicherung gepeichert</li>
+        <li>Das bedeutet: Wenn jeden Tag 10 GB gesichert wird, haben wir am 3.Tag einen Speicherplatz verbrauch von 120
+            GB</li>
+    </ul>
+    <h2>Wiederherstellung</h2>
+    <h3>Vollsicherung</h3>
+    <ul>
+        <li>Wiederherstellung ist einfach</li>
+    </ul>
+    <h3>Differenziell</h3>
+    <ul>
+        <li>Benötigt wird: Die Vollsicherung und die gewünschte Sicherung des Tages</li>
+    </ul>
+    <h3>Inkrementell</h3>
+    <ul>
+        <li>Benötigt wird: Die Vollsicherung, die gewünschte Sicherung des Tages und alle die dazwischen liegenden
+            Sicherungen</li>
+    </ul>
+
     <a href="/Datenbank/Datenbank.html">zurück zum Datenbank</a>
 </body>
 
